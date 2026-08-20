@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Build
+build/
+dist/
+*.egg
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+ehthumbs_vista.db
+
+# Logs
+*.log
+logs/
+
+# Temp
+tmp/
+temp/
+*.html~
+*.bak
+*.old
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Project specific
+test_output*
+debug_output*

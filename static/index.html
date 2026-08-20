@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巡网者 NetWalker · 网络与系统运维工具箱</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=2.2.0">
+</head>
+<body>
+<div class="app">
+    <!-- ===== 侧边栏 ===== -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="8 6 3 12 8 18"/>
+                    <polyline points="16 6 21 12 16 18"/>
+                    <line x1="14" y1="4" x2="10" y2="20"/>
+                </svg>
+            </div>
+            <div>
+                <div class="sidebar-title">NetWalker</div>
+                <div class="sidebar-subtitle">巡网者 · 网络运维工具箱 v2.2</div>
+            </div>
+        </div>
+        <nav class="nav">
+            <div class="nav-section">
+                <div class="nav-label">系统监控</div>
+                <button class="nav-item active" data-page="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg><span>仪表盘</span></button>
+                <button class="nav-item" data-page="realtime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>实时监控</span></button>
+                <button class="nav-item" data-page="cpu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg><span>CPU 监控</span></button>
+                <button class="nav-item" data-page="memory"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="19" x2="6" y2="5"/><line x1="10" y1="19" x2="10" y2="5"/><line x1="14" y1="19" x2="14" y2="5"/><line x1="18" y1="19" x2="18" y2="5"/><line x1="2" y1="22" x2="22" y2="22"/></svg><span>内存 & 磁盘</span></button>
+                <button class="nav-item" data-page="interfaces"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg><span>网络接口</span></button>
+                <button class="nav-item" data-page="env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>环境变量</span></button>
+                <button class="nav-item" data-page="syspower"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg><span>电源 & 补丁</span></button>
+                <button class="nav-item" data-page="proctree"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="3" x2="7" y2="7"/><line x1="14" y1="14" x2="21" y2="21"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg><span>进程树</span></button>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">网络工具</div>
+                <button class="nav-item" data-page="network"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>网络诊断</span></button>
+                <button class="nav-item" data-page="portscan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>端口扫描</span></button>
+                <button class="nav-item" data-page="bandwidth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>带宽测试</span></button>
+                <button class="nav-item" data-page="webcheck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>SSL & HTTP</span></button>
+                <button class="nav-item" data-page="wifi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg><span>Wi-Fi 信息</span></button>
+                <button class="nav-item" data-page="subnet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg><span>子网计算器</span></button>
+                <button class="nav-item" data-page="connections"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>连接监控</span></button>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">管理工具</div>
+                <button class="nav-item" data-page="processes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M9 9h6v6H9z"/></svg><span>进程管理</span></button>
+                <button class="nav-item" data-page="services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>服务管理</span></button>
+                <button class="nav-item" data-page="tasks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>计划任务</span></button>
+                <button class="nav-item" data-page="terminal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg><span>命令终端</span></button>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">文件工具</div>
+                <button class="nav-item" data-page="hash"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg><span>文件哈希</span></button>
+                <button class="nav-item" data-page="largefiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>大文件查找</span></button>
+                <button class="nav-item" data-page="diskanalyze"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>磁盘分析</span></button>
+                <button class="nav-item" data-page="duplicates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>重复文件</span></button>
+                <button class="nav-item" data-page="cleantemp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>清理临时</span></button>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">安全</div>
+                <button class="nav-item" data-page="security"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>安全中心</span></button>
+                <button class="nav-item" data-page="assessment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>安全评估</span></button>
+                <button class="nav-item" data-page="eventlog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span>事件日志</span></button>
+                <button class="nav-item" data-page="programs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>已装程序</span></button>
+                <button class="nav-item" data-page="shares"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span>共享文件夹</span></button>
+            </div>
+            <div class="nav-section">
+                <div class="nav-label">渗透测试</div>
+                <button class="nav-item" data-page="privesc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><polyline points="5 12 12 5 19 12"/><circle cx="12" cy="12" r="10"/></svg><span>提权路径</span></button>
+                <button class="nav-item" data-page="persistence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><polyline points="21 3 21 8 16 8"/><path d="M12 7v5l3 2"/></svg><span>持久化检查</span></button>
+                <button class="nav-item" data-page="weakcred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="12" cy="15" r="1.5"/></svg><span>弱口令审计</span></button>
+                <button class="nav-item" data-page="antiforen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="2" y1="2" x2="22" y2="22"/></svg><span>反取证检测</span></button>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <span><span class="status-dot"></span>运行中</span>
+            <span class="mono" id="footer-time">--:--</span>
+        </div>
+        <div class="sidebar-copy">© 2026 知行工作室</div>
+    </aside>
+
+    <!-- ===== 主区域 ===== -->
+    <div class="main">
+        <header class="topbar">
+            <button class="menu-toggle" id="menu-toggle" aria-label="菜单">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="topbar-title" id="page-title">仪表盘</div>
+            <div class="topbar-actions">
+                <button class="btn btn-sm" id="refresh-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                    刷新
+                </button>
+            </div>
+        </header>
+        <!-- 移动端遮罩层 -->
+        <div class="overlay" id="overlay"></div>
+        <div class="content" id="content">
+            <!-- ===== 仪表盘 ===== -->
+            <div class="page active" id="page-dashboard">
+                <div class="gauge-grid" id="gauge-grid"></div>
+                <div style="margin-top:20px"></div>
+                <div class="grid grid-2">
+                    <div class="card"><div class="card-header"><span class="card-title">系统信息</span></div><div class="info-list" id="sys-info"></div></div>
+                    <div class="card"><div class="card-header"><span class="card-title">磁盘分区</span></div><div id="disk-list"></div></div>
+                </div>
+            </div>
+
+            <!-- ===== 实时监控 ===== -->
+            <div class="page" id="page-realtime">
+                <div class="toolbar">
+                    <button class="btn btn-primary" id="rt-toggle">▶ 开始监控</button>
+                    <label class="text-secondary" style="font-size:13px">间隔(ms):</label>
+                    <input class="input" type="number" id="rt-interval" value="2000" style="max-width:90px">
+                    <span class="text-secondary" id="rt-status">已停止</span>
+                </div>
+                <div class="grid grid-2">
+                    <div class="card"><div class="card-header"><span class="card-title">CPU 使用率</span><span class="mono text-accent" id="rt-cpu-val">--</span></div><canvas id="rt-cpu-chart" height="200"></canvas></div>
+                    <div class="card"><div class="card-header"><span class="card-title">内存使用率</span><span class="mono text-accent" id="rt-mem-val">--</span></div><canvas id="rt-mem-chart" height="200"></canvas></div>
+                </div>
+                <div class="card" style="margin-top:16px">
+                    <div class="card-header"><span class="card-title">网络 I/O 速率</span></div>
+                    <div id="rt-net-info" class="info-list"></div>
+                </div>
+            </div>
+
+            <!-- ===== CPU ===== -->
+            <div class="page" id="page-cpu">
+                <div class="grid grid-2">
+                    <div class="card"><div class="card-header"><span class="card-title">CPU 总体使用率</span></div><div id="cpu-gauge"></div></div>
+                    <div class="card"><div class="card-header"><span class="card-title">CPU 详情</span></div><div class="info-list" id="cpu-info"></div></div>
+                </div>
+                <div class="card" style="margin-top:16px"><div class="card-header"><span class="card-title">各核心使用率</span></div><div class="cpu-cores" id="cpu-cores"></div></div>
+            </div>
+
+            <!-- ===== 内存 & 磁盘 ===== -->
+            <div class="page" id="page-memory">
+                <div class="grid grid-2">
+                    <div class="card"><div class="card-header"><span class="card-title">物理内存</span></div><div id="mem-virtual"></div></div>
+                    <div class="card"><div class="card-header"><span class="card-title">交换分区</span></div><div id="mem-swap"></div></div>
+                </div>
+                <div class="card" style="margin-top:16px"><div class="card-header"><span class="card-title">磁盘分区详情</span></div><div class="table-wrap" id="disk-table-wrap"></div></div>
+            </div>
+
+            <!-- ===== 网络接口 ===== -->
+            <div class="page" id="page-interfaces">
+                <div class="card"><div class="card-header"><span class="card-title">网络接口</span></div><div class="table-wrap" id="interfaces-table"></div></div>
+            </div>
+
+            <!-- ===== 环境变量 ===== -->
+            <div class="page" id="page-env">
+                <div class="toolbar"><input class="input" id="env-search" placeholder="搜索环境变量..."><button class="btn btn-primary" onclick="loadEnv()">刷新</button></div>
+                <div class="card"><div class="table-wrap" id="env-table"></div></div>
+            </div>
+
+            <!-- ===== 电源 & 补丁 ===== -->
+            <div class="page" id="page-syspower">
+                <div class="grid grid-2">
+                    <div class="card"><div class="card-header"><span class="card-title">电源计划</span></div><div class="terminal" id="power-output"><span class="terminal-empty">加载中...</span></div></div>
+                    <div class="card"><div class="card-header"><span class="card-title">传感器信息</span></div><div class="info-list" id="sensor-info"></div></div>
+                </div>
+                <div class="card" style="margin-top:16px"><div class="card-header"><span class="card-title">已安装补丁</span></div><div class="terminal" id="hotfix-output"><span class="terminal-empty">加载中...</span></div></div>
+            </div>
+
+            <!-- ===== 网络诊断 ===== -->
+            <div class="page" id="page-network">
+                <div class="tabs">
+                    <div class="tab active" data-tab="ping">Ping</div>
+                    <div class="tab" data-tab="dns">DNS 解析</div>
+                    <div class="tab" data-tab="tracert">路由追踪</div>
+                    <div class="tab" data-tab="whois">Whois</div>
+                    <div class="tab" data-tab="port">端口检测</div>
+                    <div class="tab" data-tab="ipconfig">IP 配置</div>
+                    <div class="tab" data-tab="route">路由表</div>
+                    <div class="tab" data-tab="arp">ARP 表</div>
+                </div>
+                <div class="tab-content active" data-content="ping">
+                    <div class="toolbar"><input class="input" id="ping-host" placeholder="主机名或IP" value="baidu.com"><input class="input" id="ping-count" type="number" value="4" min="1" max="20" style="max-width:80px"><button class="btn btn-primary" onclick="runPing()">执行 Ping</button></div>
+                    <div class="terminal" id="ping-output"><span class="terminal-empty">点击「执行 Ping」开始...</span></div>
+                </div>
+                <div class="tab-content" data-content="dns">
+                    <div class="toolbar"><input class="input" id="dns-domain" placeholder="域名" value="baidu.com"><select class="select" id="dns-type"><option value="A">A</option><option value="AAAA">AAAA</option><option value="MX">MX</option><option value="NS">NS</option><option value="TXT">TXT</option><option value="CNAME">CNAME</option></select><button class="btn btn-primary" onclick="runDns()">解析</button></div>
+                    <div class="terminal" id="dns-output"><span class="terminal-empty">点击「解析」开始...</span></div>
+                </div>
+                <div class="tab-content" data-content="tracert">
+                    <div class="toolbar"><input class="input" id="tracert-host" placeholder="目标主机" value="baidu.com"><input class="input" id="tracert-hops" type="number" value="15" min="1" max="30" style="max-width:80px"><button class="btn btn-primary" onclick="runTracert()">路由追踪</button></div>
+                    <div class="terminal" id="tracert-output"><span class="terminal-empty">点击按钮开始追踪（可能耗时较长）...</span></div>
+                </div>
+                <div class="tab-content" data-content="whois">
+                    <div class="toolbar"><input class="input" id="whois-domain" placeholder="域名" value="baidu.com"><button class="btn btn-primary" onclick="runWhois()">查询</button></div>
+                    <div class="terminal" id="whois-output"><span class="terminal-empty">点击按钮查询...</span></div>
+                </div>
+                <div class="tab-content" data-content="port">
+                    <div class="toolbar"><input class="input" id="port-host" placeholder="主机" value="127.0.0.1"><input class="input" id="port-port" placeholder="端口" value="80" style="max-width:100px"><button class="btn btn-primary" onclick="runPortCheck()">检测端口</button></div>
+                    <div id="port-result"></div>
+                </div>
+                <div class="tab-content" data-content="ipconfig">
+                    <button class="btn btn-primary" onclick="runIpconfig()">获取 IP 配置</button>
+                    <div class="terminal" id="ipconfig-output" style="margin-top:12px"><span class="terminal-empty">点击按钮获取...</span></div>
+                </div>
+                <div class="tab-content" data-content="route">
+                    <button class="btn btn-primary" onclick="runRoute()">查看路由表</button>
+                    <div class="terminal" id="route-output" style="margin-top:12px"><span class="terminal-empty">点击按钮获取...</span></div>
+                </div>
+                <div class="tab-content" data-content="arp">
+                    <button class="btn btn-primary" onclick="runArp()">查看 ARP 表</button>
+                    <div class="terminal" id="arp-output" style="margin-top:12px"><span class="terminal-empty">点击按钮获取...</span></div>
+                </div>
+            </div>
+
+            <!-- ===== 端口扫描 ===== -->
+            <div class="page" id="page-portscan">
+                <div class="toolbar">
+                    <input class="input" id="scan-host" placeholder="目标主机" value="127.0.0.1">
+                    <input class="input" id="scan-start" type="number" placeholder="起始端口" value="1" style="max-width:110px">
+                    <input class="input" id="scan-end" type="number" placeholder="结束端口" value="1024" style="max-width:110px">
+                    <button class="btn btn-primary" onclick="runPortScan()">开始扫描</button>
+                    <span class="text-secondary" id="scan-status"></span>
+                </div>
+                <div class="toolbar range-quick">
+                    <span class="text-muted" style="font-size:12px">常用范围:</span>
+                    <button class="btn btn-sm" onclick="setScanRange(1,1024)">常见 1-1024</button>
+                    <button class="btn btn-sm" onclick="setScanRange(8000,9000)">Web 8000-9000</button>
+                    <button class="btn btn-sm" onclick="setScanRange(3306,3306)">MySQL</button>
+                    <button class="btn btn-sm" onclick="setScanRange(3389,3389)">RDP</button>
+                    <button class="btn btn-sm" onclick="setScanRange(445,445)">SMB</button>
+                    <button class="btn btn-sm" onclick="setScanRange(20,21)">FTP</button>
+                </div>
+                <div class="card"><div class="card-header"><span class="card-title">扫描结果</span><span class="text-secondary" style="font-size:12px">单次最多 1024 端口 · 200 线程并发</span></div><div id="scan-result"><div class="empty-state">输入主机和端口范围后开始扫描</div></div></div>
+            </div>
+
+            <!-- ===== SSL & HTTP ===== -->
+            <div class="page" id="page-webcheck">
+                <div class="tabs">
+                    <div class="tab active" data-tab="ssl">SSL 证书</div>
+                    <div class="tab" data-tab="http">HTTP 头</div>
+                </div>
+                <div class="tab-content active" data-content="ssl">
+                    <div class="toolbar"><input class="input" id="ssl-host" placeholder="域名" value="baidu.com"><input class="input" id="ssl-port" type="number" value="443" style="max-width:90px"><button class="btn btn-primary" onclick="runSslCheck()">检查证书</button></div>
+                    <div id="ssl-result"></div>
+                </div>
+                <div class="tab-content" data-content="http">
+                    <div class="toolbar"><input class="input" id="http-url" placeholder="URL，如 baidu.com 或 https://..." value="baidu.com"><button class="btn btn-primary" onclick="runHttpCheck()">检测 HTTP 头</button></div>
+                    <div id="http-result"></div>
+                </div>
+            </div>
+
+            <!-- ===== Wi-Fi ===== -->
+            <div class="page" id="page-wifi">
+                <button class="btn btn-primary" onclick="loadWifi()">获取 Wi-Fi 信息</button>
+                <div class="grid grid-2" style="margin-top:16px">
+                    <div class="card"><div class="card-header"><span class="card-title">Wi-Fi 接口</span></div><div class="terminal" id="wifi-iface"><span class="terminal-empty">点击按钮获取...</span></div></div>
+                    <div class="card"><div class="card-header"><span class="card-title">Wi-Fi 配置文件</span></div><div class="terminal" id="wifi-profiles"><span class="terminal-empty">点击按钮获取...</span></div></div>
+                </div>
+            </div>
+
+            <!-- ===== 子网计算器 ===== -->
+            <div class="page" id="page-subnet">
+                <div class="toolbar">
+                    <input class="input" id="subnet-ip" placeholder="IP 地址" value="192.168.1.1">
+                    <input class="input" id="subnet-prefix" type="number" placeholder="前缀" value="24" style="max-width:90px">
+                    <button class="btn btn-primary" onclick="runSubnetCalc()">计算</button>
+                </div>
+                <div id="subnet-result"></div>
+            </div>
+
+            <!-- ===== 连接监控 ===== -->
+            <div class="page" id="page-connections">
+                <div class="toolbar"><button class="btn btn-primary" onclick="loadConnections()">刷新连接</button><span class="text-secondary" id="conn-count"></span></div>
+                <div class="table-wrap" id="conn-table"></div>
+            </div>
+
+            <!-- ===== 进程管理 ===== -->
+            <div class="page" id="page-processes">
+                <div class="toolbar"><select class="select" id="proc-sort"><option value="cpu">按 CPU 排序</option><option value="memory">按内存排序</option><option value="name">按名称排序</option><option value="pid">按 PID 排序</option></select><button class="btn btn-primary" onclick="loadProcesses()">刷新</button><span class="text-secondary" id="proc-count"></span></div>
+                <div class="table-wrap" id="proc-table"></div>
+            </div>
+
+            <!-- ===== 服务管理 ===== -->
+            <div class="page" id="page-services">
+                <div class="toolbar"><select class="select" id="svc-state"><option value="all">全部服务</option><option value="running">运行中</option><option value="stopped">已停止</option></select><input class="input" id="svc-search" placeholder="搜索服务..." style="max-width:240px"><button class="btn btn-primary" onclick="loadServices()">刷新</button><span class="text-secondary" id="svc-count"></span></div>
+                <div class="table-wrap" id="svc-table"></div>
+            </div>
+
+            <!-- ===== 计划任务 ===== -->
+            <div class="page" id="page-tasks">
+                <div class="toolbar"><input class="input" id="task-search" placeholder="搜索任务名..."><button class="btn btn-primary" onclick="loadTasks()">刷新</button><span class="text-secondary" id="task-count"></span></div>
+                <div class="table-wrap" id="task-table"></div>
+            </div>
+
+            <!-- ===== 命令终端 ===== -->
+            <div class="page" id="page-terminal">
+                <div class="toolbar"><input class="input" id="term-cmd" placeholder="输入命令，如 ipconfig /all 或 dir" onkeydown="if(event.key==='Enter')runTerminal()"><button class="btn btn-primary" onclick="runTerminal()">执行</button></div>
+                <div class="toolbar"><span class="text-muted" style="font-size:12px">快捷命令:</span>
+                    <button class="btn btn-sm" onclick="quickCmd('whoami')">whoami</button>
+                    <button class="btn btn-sm" onclick="quickCmd('hostname')">hostname</button>
+                    <button class="btn btn-sm" onclick="quickCmd('systeminfo | findstr /B /C:\"OS\"')">systeminfo</button>
+                    <button class="btn btn-sm" onclick="quickCmd('tasklist | findstr /I \"python\"')">查进程</button>
+                    <button class="btn btn-sm" onclick="quickCmd('netstat -ano | findstr LISTENING')">监听端口</button>
+                    <button class="btn btn-sm" onclick="quickCmd('ver')">ver</button>
+                </div>
+                <div class="terminal" id="term-output"><span class="terminal-empty">输入命令并回车执行...</span></div>
+            </div>
+
+            <!-- ===== 文件哈希 ===== -->
+            <div class="page" id="page-hash">
+                <div class="toolbar"><input class="input" id="hash-path" placeholder="文件完整路径，如 C:\\Windows\\notepad.exe"><select class="select" id="hash-algo"><option value="md5">MD5</option><option value="sha1">SHA1</option><option value="sha256" selected>SHA256</option><option value="sha512">SHA512</option></select><button class="btn btn-primary" onclick="runHash()">计算哈希</button></div>
+                <div id="hash-result"></div>
+            </div>
+
+            <!-- ===== 大文件查找 ===== -->
+            <div class="page" id="page-largefiles">
+                <div class="toolbar"><input class="input" id="lf-dir" placeholder="目录路径" value="C:\\"><input class="input" id="lf-min" type="number" value="100" min="1" style="max-width:110px" title="最小大小(MB)"><span class="text-secondary" style="font-size:12px">最小(MB)</span><button class="btn btn-primary" onclick="runLargeFiles()">查找</button></div>
+                <div class="card"><div class="card-header"><span class="card-title">大文件列表</span><span class="text-secondary" id="lf-count"></span></div><div class="table-wrap" id="lf-table"></div></div>
+            </div>
+
+            <!-- ===== 磁盘分析 ===== -->
+            <div class="page" id="page-diskanalyze">
+                <div class="toolbar"><input class="input" id="da-dir" placeholder="目录路径" value="C:\\Users"><button class="btn btn-primary" onclick="runDiskAnalyze()">分析</button></div>
+                <div class="grid grid-2">
+                    <div class="card"><div class="card-header"><span class="card-title">总体统计</span></div><div class="info-list" id="da-summary"></div></div>
+                    <div class="card"><div class="card-header"><span class="card-title">占用 Top 目录</span></div><div class="table-wrap" id="da-table"></div></div>
+                </div>
+            </div>
+
+            <!-- ===== 重复文件 ===== -->
+            <div class="page" id="page-duplicates">
+                <div class="toolbar"><input class="input" id="dup-dir" placeholder="目录路径" value="C:\\Users"><button class="btn btn-primary" onclick="runDuplicates()">检测重复</button><span class="text-secondary" id="dup-status"></span></div>
+                <div id="dup-result"></div>
+            </div>
+
+            <!-- ===== 清理临时 ===== -->
+            <div class="page" id="page-cleantemp">
+                <div class="card">
+                    <div class="card-header"><span class="card-title">临时文件清理</span></div>
+                    <p class="text-secondary" style="font-size:13px;margin-bottom:16px">清理 TEMP、TMP 和系统临时目录中的文件。被占用的文件会跳过。</p>
+                    <button class="btn btn-primary" onclick="runCleanTemp()">开始清理</button>
+                    <div id="clean-result" style="margin-top:16px"></div>
+                </div>
+            </div>
+
+            <!-- ===== 安全中心 ===== -->
+            <div class="page" id="page-security">
+                <div class="grid grid-3" id="security-cards"></div>
+                <div class="card" style="margin-top:16px"><div class="card-header"><span class="card-title">Windows Defender</span></div><div class="terminal" id="defender-output"><span class="terminal-empty">加载中...</span></div></div>
+                <div class="card" style="margin-top:16px"><div class="card-header"><span class="card-title">密码策略</span></div><div class="terminal" id="policy-output"><span class="terminal-empty">加载中...</span></div></div>
+            </div>
+
+            <!-- ===== 事件日志 ===== -->
+            <div class="page" id="page-eventlog">
+                <div class="toolbar"><select class="select" id="log-type"><option value="System">系统日志</option><option value="Application">应用程序日志</option><option value="Security">安全日志</option></select><input class="input" id="log-count" type="number" value="20" min="1" max="200" style="max-width:100px"><button class="btn btn-primary" onclick="loadEventLog()">查看日志</button></div>
+                <div class="terminal" id="eventlog-output"><span class="terminal-empty">选择日志类型后点击查看...</span></div>
+            </div>
+
+            <!-- ===== 已装程序 ===== -->
+            <div class="page" id="page-programs">
+                <div class="toolbar"><button class="btn btn-primary" onclick="loadPrograms()">扫描已装程序</button><span class="text-secondary" id="prog-count"></span></div>
+                <div class="card"><div class="card-header"><span class="card-title">已安装程序列表</span></div><div class="terminal" id="programs-output"><span class="terminal-empty">点击按钮扫描...</span></div></div>
+            </div>
+
+            <!-- ===== 共享文件夹 ===== -->
+            <div class="page" id="page-shares">
+                <button class="btn btn-primary" onclick="loadShares()">查看共享</button>
+                <div class="terminal" id="shares-output" style="margin-top:12px"><span class="terminal-empty">点击按钮获取...</span></div>
+            </div>
+
+            <!-- ===== 安全评估 ===== -->
+            <div class="page" id="page-assessment">
+                <div class="toolbar">
+                    <button class="btn btn-primary" onclick="runAssessment()">开始安全评估</button>
+                    <span class="text-secondary" id="assess-status"></span>
+                </div>
+                <div id="assess-result">
+                    <div class="empty-state">点击「开始安全评估」进行基线检查与攻击面分析</div>
+                </div>
+            </div>
+
+            <!-- ===== 提权路径 ===== -->
+            <div class="page" id="page-privesc">
+                <div class="toolbar">
+                    <button class="btn btn-primary" onclick="runPrivesc()">扫描提权路径</button>
+                    <span class="text-secondary" id="privesc-status"></span>
+                </div>
+                <div id="privesc-result">
+                    <div class="empty-state">检测可被利用的提权向量：可写系统目录、未签名服务、AlwaysInstallElevated、令牌特权等</div>
+                </div>
+            </div>
+
+            <!-- ===== 持久化检查 ===== -->
+            <div class="page" id="page-persistence">
+                <div class="toolbar">
+                    <button class="btn btn-primary" onclick="runPersistence()">检查持久化机制</button>
+                    <span class="text-secondary" id="persist-status"></span>
+                </div>
+                <div id="persist-result">
+                    <div class="empty-state">扫描启动项、计划任务、服务、WMI、注册表劫持等持久化点</div>
+                </div>
+            </div>
+
+            <!-- ===== 弱口令审计 ===== -->
+            <div class="page" id="page-weakcred">
+                <div class="toolbar">
+                    <button class="btn btn-primary" onclick="runWeakCred()">开始审计</button>
+                    <span class="text-secondary" id="weak-status"></span>
+                </div>
+                <div id="weak-result">
+                    <div class="empty-state">检查本地账户空密码、弱密码策略、LMHash、Guest/Administrator 状态</div>
+                </div>
+            </div>
+
+            <!-- ===== 反取证检测 ===== -->
+            <div class="page" id="page-antiforen">
+                <div class="toolbar">
+                    <button class="btn btn-primary" onclick="runAntiForen()">开始检测</button>
+                    <span class="text-secondary" id="antiforen-status"></span>
+                </div>
+                <div id="antiforen-result">
+                    <div class="empty-state">检测网卡混杂模式、可疑隐蔽通道、日志清除痕迹、监控绕过工具</div>
+                </div>
+            </div>
+
+            <!-- ===== 进程树 ===== -->
+            <div class="page" id="page-proctree">
+                <div class="toolbar">
+                    <button class="btn btn-primary" onclick="loadProcessTree()">加载进程树</button>
+                    <span class="text-secondary" id="proctree-count"></span>
+                </div>
+                <div id="proctree-result">
+                    <div class="empty-state">点击「加载进程树」查看父子进程层级关系</div>
+                </div>
+            </div>
+
+            <!-- ===== 带宽测试 ===== -->
+            <div class="page" id="page-bandwidth">
+                <div class="toolbar">
+                    <input class="input" id="bw-host" placeholder="目标主机" value="127.0.0.1">
+                    <input class="input" id="bw-port" type="number" placeholder="端口" value="8765" style="max-width:100px">
+                    <input class="input" id="bw-duration" type="number" placeholder="时长(秒)" value="3" min="1" max="30" style="max-width:100px">
+                    <button class="btn btn-primary" onclick="runBandwidthTest()">开始测试</button>
+                    <span class="text-secondary" id="bw-status"></span>
+                </div>
+                <div id="bw-result">
+                    <div class="empty-state">设置目标主机和端口，测量延迟和吞吐量</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+<script src="/static/js/app.js?v=2.2.0"></script>
+</body>
+</html>
