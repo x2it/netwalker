@@ -1,5 +1,7 @@
 # 巡网者 NetWalker · 网络与系统运维工具箱
 
+Current version / 当前版本：2.2.0
+
 > Windows 本地运维 / 网络工具 / 安全自检 / 渗透测试的一体化 Web 工具箱。
 
 **NetWalker (巡网者)** is a self-hosted browser-based ops & security toolbox for Windows: 30 pages, 58 APIs covering system monitoring, network diagnostics, port scanning, process/service management, file utilities, security baseline checks and local pentest self-audit. Single-file FastAPI backend + zero-dependency vanilla frontend — no fake features, all data from the real machine.
