@@ -8,6 +8,8 @@ Current version / 当前版本：2.2.0
 
 <img src="https://raw.githubusercontent.com/x2it/netwalker/main/banner.png" alt="巡网者 NetWalker · 网络与系统运维工具箱" width="100%">
 
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+
 ---
 
 ## 项目定位
@@ -66,7 +68,7 @@ python test_full.py
 
 ## 功能模块（30 个页面 · 58 个 API）
 
-### 🖥 系统监控
+### 系统监控
 
 | 页面 | 说明 |
 |---|---|
@@ -77,21 +79,21 @@ python test_full.py
 | 网络接口 | IPv4 / IPv6 / MAC / 发送接收流量 |
 | 环境变量 | 实时搜索过滤 |
 | 电源 & 补丁 | 电源计划 / 传感器 / 已装补丁 |
-| **进程树** ⭐ | 父子进程层级结构 + CPU/内存占用可视化 |
+| **进程树** | 父子进程层级结构 + CPU/内存占用可视化 |
 
-### 🌐 网络工具
+### 网络工具
 
 | 页面 | 说明 |
 |---|---|
 | 网络诊断 | Ping / DNS / 路由追踪 / Whois / 单端口检测 / IP配置 / 路由表 / ARP（8 个 Tab） |
 | 端口扫描 | **SSE 流式** 200 线程并发、端口服务名映射、常用范围快捷、发现端口实时闪烁 |
-| **带宽测试** ⭐ | 延迟测量（10次）+ 吞吐量测试，支持自定义目标和时长 |
+| **带宽测试** | 延迟测量（10次）+ 吞吐量测试，支持自定义目标和时长 |
 | SSL & HTTP | 证书详情 + 状态码 + HTTP Headers |
 | Wi-Fi 信息 | 接口 + 配置文件（修复中文乱码） |
 | 子网计算器 | 地址/掩码/广播/可用主机 列表展开 |
 | 连接监控 | 所有 TCP/UDP 连接及状态徽章 |
 
-### 🛠 管理工具
+### 管理工具
 
 | 页面 | 说明 |
 |---|---|
@@ -100,7 +102,7 @@ python test_full.py
 | 计划任务 | 搜索 + 下次/上次运行时间 |
 | 命令终端 | 任意命令执行 + 快捷命令按钮 + 危险命令拦截 |
 
-### 📁 文件工具
+### 文件工具
 
 | 页面 | 说明 |
 |---|---|
@@ -109,9 +111,9 @@ python test_full.py
 | 磁盘分析 | Top 目录占用排行 |
 | 重复文件 | 内容哈希分组检测 |
 | 清理临时 | 临时目录垃圾清理 + 释放 MB 统计 |
-| **文件删除** ⭐ | 安全限制下的文件/目录删除，支持递归删除 |
+| **文件删除** | 安全限制下的文件/目录删除，支持递归删除 |
 
-### 🛡 安全
+### 安全
 
 | 页面 | 说明 |
 |---|---|
@@ -121,7 +123,7 @@ python test_full.py
 | 已装程序 | 注册表项扫描已安装程序 |
 | 共享文件夹 | net share 输出 |
 
-### 🔬 渗透测试（本机自检）
+### 渗透测试（本机自检）
 
 | 页面 | 说明 |
 |---|---|
@@ -132,7 +134,7 @@ python test_full.py
 
 > 渗透测试模块仅对本机安全自检合法，非攻击工具。
 
-⭐ v2.2 新增功能
+v2.2 新增功能
 
 ---
 
@@ -216,7 +218,7 @@ sysops/
 | `/api/system/disks` | GET | 磁盘分区列表 |
 | `/api/system/network-interfaces` | GET | 网卡列表 |
 | `/api/system/env` | GET | 环境变量 |
-| `/api/system/process-tree` | GET | ⭐ 进程树视图（父子关系 + 资源占用） |
+| `/api/system/process-tree` | GET | 进程树视图（父子关系 + 资源占用） |
 | `/api/system/updates` | GET | 系统更新历史 |
 | `/api/system/power` | GET | 电源计划 |
 | `/api/system/sensors` | GET | 传感器（温度/风扇/电池） |
@@ -240,7 +242,7 @@ sysops/
 | `/api/network/http-headers` | GET | HTTP 头检测 |
 | `/api/network/wifi` | GET | Wi-Fi 接口 + 配置文件 |
 | `/api/network/subnet` | GET | 子网计算器 |
-| `/api/network/bandwidth-test` | GET | ⭐ 带宽/延迟测试 |
+| `/api/network/bandwidth-test` | GET | 带宽/延迟测试 |
 
 ### 进程与服务 (5)
 | 路径 | 方法 | 功能 |
@@ -284,7 +286,7 @@ sysops/
 | `/api/files/analyze` | GET | 磁盘占用分析 |
 | `/api/files/clean-temp` | POST | 清理临时文件 |
 | `/api/files/duplicates` | GET | 重复文件检测 |
-| `/api/files/delete` | DELETE | ⭐ 文件/目录删除 |
+| `/api/files/delete` | DELETE | 文件/目录删除 |
 
 ### 通用 (3)
 | 路径 | 方法 | 功能 |
