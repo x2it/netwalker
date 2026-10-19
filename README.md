@@ -1,14 +1,16 @@
 # 巡网者 NetWalker · 网络与系统运维工具箱
 
-Current version / 当前版本：2.2.0
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-> Windows 本地运维 / 网络工具 / 安全自检 / 渗透测试的一体化 Web 工具箱。
+**Current version / 当前版本：2.2.0**（已归档停止更新）
 
-**NetWalker (巡网者)** is a self-hosted browser-based ops & security toolbox for Windows: 30 pages, 58 APIs covering system monitoring, network diagnostics, port scanning, process/service management, file utilities, security baseline checks and local pentest self-audit. Single-file FastAPI backend + zero-dependency vanilla frontend — no fake features, all data from the real machine.
+> **⚠️ 本项目已停止更新，归档保留。**
+>
+> NetWalker（巡网者）是早期的 Windows 本机运维与安全自检工具箱（30 页 / 58 API / 真实采集无占位功能）。该能力已融入新一代 **[VELA](https://vela.app.workbuddy.host)** —— 知行工作室的本地 Agent 平台（本地 CLI · Web 控制台 · 下载服务）。以下文档仅供历史参考。
+
+**NetWalker (巡网者)** is an **archived** self-hosted browser-based ops & security toolbox for Windows: 30 pages, 58 APIs covering system monitoring, network diagnostics, port scanning, process/service management, file utilities, security baseline checks and local pentest self-audit. Its capabilities have been merged into **[VELA](https://vela.app.workbuddy.host)**. Single-file FastAPI backend + zero-dependency vanilla frontend — no fake features, all data from the real machine.
 
 <img src="https://raw.githubusercontent.com/x2it/netwalker/main/banner.png" alt="巡网者 NetWalker · 网络与系统运维工具箱" width="100%">
-
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 ---
 
@@ -147,7 +149,6 @@ sysops/
 ├── README.md                # 本文件
 ├── LICENSE                  # MIT License（2026 知行工作室）
 ├── .gitignore
-├── HANDOVER.md              # 项目交接文档
 ├── test_full.py             # API 冒烟测试脚本
 └── static/
     ├── index.html           # 页面骨架（30 个 page 容器）
